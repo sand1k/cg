@@ -144,6 +144,8 @@ private:
             glfwPollEvents();
             drawFrame();
         }
+
+        vkDeviceWaitIdle(device);
     }
 
     void cleanup() {
@@ -992,6 +994,8 @@ private:
         presentInfo.pResults = nullptr; // Optional
 
         vkQueuePresentKHR(presentQueue, &presentInfo);
+
+        vkQueueWaitIdle(presentQueue);
     } // drawFrame
 
     /**
